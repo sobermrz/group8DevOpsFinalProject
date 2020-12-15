@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: linkus-front
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: linkus-front
+    minReadySeconds: 15
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: linkus-front
+        spec:
+            containers:
+                - name: linkus-front
+                  image: andrewhu2013/linkedusplus-client:mi2
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 80
+                  resources:
+                      limits:
+                          cpu: '1'
+                      requests:
+                          cpu: '0.2'

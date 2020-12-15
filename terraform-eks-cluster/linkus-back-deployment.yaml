@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: linkus-back
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: linkus-back
+    minReadySeconds: 15
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: linkus-back
+        spec:
+            containers:
+                - name: linkus-back
+                  image: andrewhu2013/linkedusplus-backend
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 8088

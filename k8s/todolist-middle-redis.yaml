@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: todolist-middle-redis
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: todolist-middle-redis
+    minReadySeconds: 15
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 1
+            maxSurge: 1
+    template:
+        metadata:
+            labels:
+                app: todolist-middle-redis
+        spec:
+            containers:
+                - name: todolist-middle-redis
+                  image: redislabs/rejson:latest
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 6379
