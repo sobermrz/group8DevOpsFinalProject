@@ -1,4 +1,4 @@
-# group8DevOpsFinalProject(Developed by Andrew Hu and Ruizhi Ma)
+# group8DevOpsFinalProject(by Andrew and Ruizhi)
 # LinkedUs-Social Network Web App  
 
 ## Introduction
